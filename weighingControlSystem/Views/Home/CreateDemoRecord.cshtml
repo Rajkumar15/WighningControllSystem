@@ -1,0 +1,263 @@
+﻿@model weighingControlSystem.Models.DAL.tbl_weighingcontroller_demo
+
+@{
+    ViewBag.Title = "CreateDemoRecord";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="block-header">
+            <h2>Master</h2>
+        </div>
+    </div>
+    <div class="row clearfix">
+        <div class="col-sm-12 col-lg-12 col-md-12 col-xs-12">
+            <div class="card">
+                <div class="header">
+                    <h2>New weighing 
+                    </h2>
+                </div>
+                <div class="body">
+                    <div class="row clearfix">
+                        @using (Html.BeginForm())
+                        {
+                            @Html.ValidationSummary(true)
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        @Html.HiddenFor(x => x.pkid)
+                                        <label>Serial No. <span style="color: red">*</span></label>
+
+                                        @Html.TextBoxFor(x => x.serialNo, new { @class = "form-control", placeholder = "Serial Number ", @required = "required" })
+                                    </div>
+                                </div>
+
+                            </div>
+                        
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <div class="form-line">
+
+                                        <label>Scale Id   <span style="color: red">*</span></label>
+                                        @Html.TextBoxFor(x => x.scaleId, new { @class = "form-control", placeholder = "Scale Id", @required = "required" })
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <div class="form-line">
+
+                                        <label>RFID tag number 1   <span style="color: red">*</span></label>
+                                        @Html.TextBoxFor(x => x.RFID, new { @class = "form-control", placeholder = "RFID tag number 1 ", @required = "required" })
+                                    </div>
+                                </div>
+
+                            </div>
+                          
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <div class="form-line">
+
+                                        <label>RFID tag number 2   <span style="color: red">*</span></label>
+                                        @Html.TextBoxFor(x => x.RFID1, new { @class = "form-control", placeholder = "Serial Number ", @required = "required" })
+                                    </div>
+                                </div>
+
+                            </div>
+                        
+                           
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <div class="form-line">
+
+                                        <label>Date <span style="color: red">*</span></label>
+                                        @Html.TextBoxFor(x => x.createdDate, new { @class = "form-control", placeholder = "Date ", @type = "date", @required = "required" })
+                                    </div>
+                                </div>
+
+                            </div>
+                        
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <div class="form-line">
+
+                                        <label>Date <span style="color: red">*</span></label>
+                                        @Html.TextBoxFor(x => x.createdTime, new { @class = "form-control", placeholder = "Time ", @required = "required" })
+                                    </div>
+                                </div>
+
+                            </div>
+                        
+                        
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <div class="form-line">
+
+                                        <label>Truck Number<span style="color: red">*</span></label>
+                                        @Html.TextBoxFor(x => x.TruckNumber, new { @class = "form-control", placeholder = "Truck Number", @required = "required" })
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <div class="form-line">
+
+                                        <label>Shift<span style="color: red">*</span></label>
+                                        @Html.TextBoxFor(x => x.shift, new { @class = "form-control", placeholder = "Shift", @required = "required" })
+                                    </div>
+                                </div>
+
+                            </div>
+                        
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <div class="form-line">
+
+                                        <label>Operator<span style="color: red">*</span></label>
+                                        @Html.TextBoxFor(x => x.oprator, new { @class = "form-control", placeholder = "Operator", @required = "required" })
+                                    </div>
+                                </div>
+
+                            </div>
+                        
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <div class="form-line">
+
+                                        <label>Contractor<span style="color: red">*</span></label>
+                                        @Html.TextBoxFor(x => x.contactor, new { @class = "form-control", placeholder = "Contractor", @required = "required" })
+                                    </div>
+                                </div>
+
+                            </div>
+                        
+                         
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <div class="form-line">
+
+                                        <label>Wheel 1 <span style="color: red">*</span></label>
+                                        @Html.TextBoxFor(x => x.Wheal1, new { @class = "form-control", placeholder = "Wheel 1     ", @required = "required" })
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <div class="form-line">
+
+                                        <label>Wheel 2 <span style="color: red">*</span></label>
+                                        @Html.TextBoxFor(x => x.wheal2, new { @class = "form-control", placeholder = "Wheel 2     ", @required = "required" })
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <div class="form-line">
+
+                                        <label>Wheel 3 <span style="color: red">*</span></label>
+                                        @Html.TextBoxFor(x => x.wheal3, new { @class = "form-control", placeholder = "Wheel 3     ", @required = "required" })
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <div class="form-line">
+
+                                        <label>Wheel 4 <span style="color: red">*</span></label>
+                                        @Html.TextBoxFor(x => x.wheal2, new { @class = "form-control", placeholder = "Wheel 4     ", @required = "required" })
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <div class="form-line">
+
+                                        <label>Tare weight <span style="color: red">*</span></label>
+                                        @Html.TextBoxFor(x => x.totalWeight, new { @class = "form-control", placeholder = " Tare weight   ", @required = "required" })
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <div class="form-line">
+
+                                        <label>Gross weight  <span style="color: red">*</span></label>
+                                        @Html.TextBoxFor(x => x.GrossWeight, new { @class = "form-control", placeholder = " Gross weight    ", @required = "required" })
+                                    </div>
+                                </div>
+
+                            </div>
+                        
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <div class="form-line">
+
+                                        <label>Nett weight<span style="color: red">*</span></label>
+                                        @Html.TextBoxFor(x => x.netWeight, new { @class = "form-control", placeholder = "Nett weight    ", @required = "required" })
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <div class="form-line">
+
+                                        <label>Truck Capacity<span style="color: red">*</span></label>
+                                        @Html.TextBoxFor(x => x.truckCapacity, new { @class = "form-control", placeholder = " Truck Capacity    ", @required = "required" })
+                                    </div>
+                                </div>
+
+                            </div>
+                        
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <div class="form-line">
+
+                                        <label>Fill Factor<span style="color: red">*</span></label>
+                                        @Html.TextBoxFor(x => x.fill_factor, new { @class = "form-control", placeholder = " Fill Factor  ", @required = "required" })
+                                    </div>
+                                </div>
+
+                            </div>
+                        
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <div class="form-line">
+
+                                        <label>Material<span style="color: red">*</span></label>
+                                        @Html.TextBoxFor(x => x.material, new { @class = "form-control", placeholder = "Material ", @required = "required" })
+                                    </div>
+                                </div>
+
+                            </div>
+                            <p>
+                                <input type="submit" value="Create" class="btn-defaul" />
+                                <input type="reset" value="Reset" class="btn-defaul" />
+                            </p>
+                        }
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+<script type="text/javascript">
+    if ('@ViewBag.alert' != "") {
+        alert('@ViewBag.alert')
+    }
+</script>

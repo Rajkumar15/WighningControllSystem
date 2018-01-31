@@ -1,0 +1,66 @@
+﻿@{
+    ViewBag.Title = "truecDetailList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="block-header">
+            <h2>NewDetails</h2>
+        </div>
+        <div class="row clearfix">
+            <div class="col-sm-12 col-lg-12 col-md-12 col-xs-12">
+                <div class="card">
+                    <div class="header">
+                        <h2>Details
+                        </h2>
+                    </div>
+                    <div class="body">
+                        <div class="row clearfix">
+                            <table  class="table table-bordered table-striped table-hover js-basic-example dataTable " style="width: 100%;">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Serial No</th>
+                                           <th>Scale Id</th>
+                                           <th>RFID 1</th>
+                                    </tr>
+
+                                </thead>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script src="~/Scripts/jquery-1.12.3.min.js"></script>
+<script src="~/Content/Theams/plugins/jquery-datatable/jquery.dataTables.js"></script>
+<link href="~/Content/jquery.dataTables.css" rel="stylesheet" />
+<script type="text/javascript">
+
+    $('.js-basic-example').DataTable({
+        "processing": true, // for show progress bar
+        "serverSide": true, // for process server side
+        "filter": true, // this is for disable filter (search box)
+        "orderMulti": false, // for disable multiple column at once
+         "ajax": {
+            "url": "/Home/rtruckList",
+            "type": "POST",
+            "datatype": "json"
+        },
+        "columns": [
+                { "data": "pkid", "name": "pkid", "orderable": false, "autoWidth": true },
+                { "data": "serialNo", "name": "serialNo", "orderable": false, "autoWidth": true },
+                { "data": "scaleId", "name": "scaleId", "orderable": false, "autoWidth": true },
+                { "data": "RFID1", "name": "RFID1", "orderable": false, "autoWidth": true },
+
+        ],
+        "fnRowCallback": function (nRow, aData, iDisplayIndex) {
+            $("td:first", nRow).html(iDisplayIndex + 1);
+            return nRow;
+        }
+    })
+</script>

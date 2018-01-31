@@ -1,0 +1,606 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="weighingcontrolSystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityType Name="tbl_accessConnection">
+          <Key>
+            <PropertyRef Name="pkid" />
+          </Key>
+          <Property Name="pkid" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="accessconnection" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="tbl_contractor">
+          <Key>
+            <PropertyRef Name="pkid" />
+          </Key>
+          <Property Name="pkid" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="contratorName" Type="varchar(max)" />
+          <Property Name="Address" Type="varchar(max)" />
+          <Property Name="Contact" Type="varchar" MaxLength="50" />
+          <Property Name="email" Type="varchar" MaxLength="50" />
+          <Property Name="cid" Type="int" />
+          <Property Name="cdate" Type="date" />
+        </EntityType>
+        <EntityType Name="tbl_operatorDetails">
+          <Key>
+            <PropertyRef Name="pkid" />
+          </Key>
+          <Property Name="pkid" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OperatorName" Type="varchar(max)" />
+          <Property Name="Contact" Type="varchar(max)" />
+          <Property Name="opEmail" Type="varchar(max)" />
+          <Property Name="Address" Type="varchar(max)" />
+          <Property Name="cid" Type="bigint" />
+          <Property Name="cdate" Type="date" />
+        </EntityType>
+        <EntityType Name="tbl_operatorMapiingWithContactor">
+          <Key>
+            <PropertyRef Name="pkid" />
+          </Key>
+          <Property Name="pkid" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="contactorId" Type="bigint" />
+          <Property Name="contactorName" Type="varchar(max)" />
+          <Property Name="operatorname" Type="varchar(max)" />
+          <Property Name="operatorid" Type="bigint" />
+          <Property Name="cid" Type="bigint" />
+          <Property Name="cdate" Type="date" />
+        </EntityType>
+        <EntityType Name="tbl_operatorMapping">
+          <Key>
+            <PropertyRef Name="pkid" />
+          </Key>
+          <Property Name="pkid" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="contractorFKID" Type="bigint" />
+          <Property Name="shift_fkid" Type="bigint" />
+          <Property Name="operator_fkId" Type="bigint" />
+          <Property Name="rfiDfkId" Type="bigint" />
+          <Property Name="operatorFKID" Type="varchar(max)" />
+          <Property Name="workingdate" Type="date" />
+          <Property Name="cid" Type="date" />
+          <Property Name="cdate" Type="date" />
+        </EntityType>
+        <EntityType Name="tbl_operatorshift">
+          <Key>
+            <PropertyRef Name="pkid" />
+          </Key>
+          <Property Name="pkid" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="shiftname" Type="varchar(max)" />
+          <Property Name="shiftstsrtTime" Type="time" Precision="7" />
+          <Property Name="shiftEndTime" Type="time" Precision="7" />
+          <Property Name="comment" Type="varchar(max)" />
+          <Property Name="cid" Type="int" />
+          <Property Name="cdate" Type="date" />
+        </EntityType>
+        <EntityType Name="tbl_RemoteConnection">
+          <Key>
+            <PropertyRef Name="pkid" />
+          </Key>
+          <Property Name="pkid" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="serverName" Type="varchar(max)" />
+          <Property Name="dataBaseName" Type="varchar(max)" />
+          <Property Name="userName" Type="varchar" MaxLength="50" />
+          <Property Name="password" Type="varchar" MaxLength="50" />
+          <Property Name="comments" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="tbl_rfidDetails">
+          <Key>
+            <PropertyRef Name="pkid" />
+          </Key>
+          <Property Name="pkid" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RFIDNUMBER" Type="varchar(max)" />
+          <Property Name="comments" Type="varchar(max)" />
+          <Property Name="cid" Type="bigint" />
+          <Property Name="cdate" Type="date" />
+        </EntityType>
+        <EntityType Name="tbl_storemachineData">
+          <Key>
+            <PropertyRef Name="pkid" />
+          </Key>
+          <Property Name="pkid" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="truckRFIDIN" Type="varchar" MaxLength="50" />
+          <Property Name="truckMppigRFID" Type="bigint" />
+          <Property Name="truckRFIDOUT" Type="varchar" MaxLength="50" />
+          <Property Name="operatorRFID" Type="varchar" MaxLength="50" />
+          <Property Name="material" Type="varchar" MaxLength="50" />
+          <Property Name="grossWeight" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="fairWeight" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="netWeight" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="shiftTime" Type="bigint" />
+          <Property Name="status" Type="varchar" MaxLength="5" />
+          <Property Name="outGrossWeight" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="outTairWeight" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="outNetWeight" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="outLocation" Type="varchar" MaxLength="50" />
+          <Property Name="outTime" Type="datetime" />
+          <Property Name="outPkid" Type="bigint" />
+          <Property Name="outShift" Type="bigint" />
+          <Property Name="ScaleId" Type="varchar(max)" />
+          <Property Name="machinePkid" Type="bigint" />
+          <Property Name="serverId" Type="bigint" />
+          <Property Name="cid" Type="bigint" Nullable="false" />
+          <Property Name="cdate" Type="date" />
+          <Property Name="dateTimeMachine" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbl_TruckDetails">
+          <Key>
+            <PropertyRef Name="pkid" />
+          </Key>
+          <Property Name="pkid" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="truckNo" Type="varchar(max)" />
+          <Property Name="truckOwner" Type="varchar(max)" />
+          <Property Name="Contact" Type="varchar(max)" />
+          <Property Name="email" Type="varchar" MaxLength="50" />
+          <Property Name="address" Type="varchar(max)" />
+          <Property Name="cid" Type="bigint" />
+          <Property Name="cdate" Type="date" />
+        </EntityType>
+        <EntityType Name="tbl_truckMapping">
+          <Key>
+            <PropertyRef Name="pkid" />
+          </Key>
+          <Property Name="pkid" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="truckFKId" Type="bigint" />
+          <Property Name="truckNo" Type="varchar(max)" />
+          <Property Name="rfif_fkId" Type="bigint" />
+          <Property Name="truckRFID" Type="varchar(max)" />
+          <Property Name="comments" Type="varchar(max)" />
+          <Property Name="cid" Type="int" />
+          <Property Name="cdate" Type="date" />
+        </EntityType>
+        <EntityType Name="tbl_weighingcontroller_demo">
+          <Key>
+            <PropertyRef Name="pkid" />
+          </Key>
+          <Property Name="pkid" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="serialNo" Type="varchar" MaxLength="50" />
+          <Property Name="RFID1" Type="varchar" MaxLength="50" />
+          <Property Name="RFID" Type="varchar" MaxLength="50" />
+          <Property Name="shift" Type="varchar" MaxLength="50" />
+          <Property Name="TruckNumber" Type="varchar" MaxLength="50" />
+          <Property Name="createdDate" Type="varchar" MaxLength="50" />
+          <Property Name="createdTime" Type="varchar" MaxLength="50" />
+          <Property Name="oprator" Type="varchar" MaxLength="50" />
+          <Property Name="contactor" Type="varchar" MaxLength="50" />
+          <Property Name="Wheal1" Type="varchar" MaxLength="50" />
+          <Property Name="wheal2" Type="varchar" MaxLength="50" />
+          <Property Name="wheal3" Type="varchar" MaxLength="50" />
+          <Property Name="wheal4" Type="varchar" MaxLength="50" />
+          <Property Name="totalWeight" Type="varchar" MaxLength="50" />
+          <Property Name="GrossWeight" Type="varchar" MaxLength="50" />
+          <Property Name="netWeight" Type="varchar" MaxLength="50" />
+          <Property Name="truckCapacity" Type="varchar" MaxLength="50" />
+          <Property Name="fill_factor" Type="varchar" MaxLength="50" />
+          <Property Name="material" Type="varchar" MaxLength="50" />
+          <Property Name="scaleId" Type="varchar" MaxLength="50" />
+          <Property Name="cid" Type="bigint" />
+          <Property Name="mid" Type="bigint" />
+          <Property Name="mdate" Type="date" />
+          <Property Name="cdate" Type="date" />
+        </EntityType>
+        <EntityContainer Name="weighingcontrolSystemModelStoreContainer">
+          <EntitySet Name="tbl_accessConnection" EntityType="Self.tbl_accessConnection" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_contractor" EntityType="Self.tbl_contractor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_operatorDetails" EntityType="Self.tbl_operatorDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_operatorMapiingWithContactor" EntityType="Self.tbl_operatorMapiingWithContactor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_operatorMapping" EntityType="Self.tbl_operatorMapping" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_operatorshift" EntityType="Self.tbl_operatorshift" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_RemoteConnection" EntityType="Self.tbl_RemoteConnection" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_rfidDetails" EntityType="Self.tbl_rfidDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_storemachineData" EntityType="Self.tbl_storemachineData" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_TruckDetails" EntityType="Self.tbl_TruckDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_truckMapping" EntityType="Self.tbl_truckMapping" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_weighingcontroller_demo" EntityType="Self.tbl_weighingcontroller_demo" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="weighingcontrolSystemModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityType Name="tbl_contractor">
+          <Key>
+            <PropertyRef Name="pkid" />
+          </Key>
+          <Property Name="pkid" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="contratorName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Contact" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cid" Type="Int32" />
+          <Property Name="cdate" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="tbl_operatorDetails">
+          <Key>
+            <PropertyRef Name="pkid" />
+          </Key>
+          <Property Name="pkid" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OperatorName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Contact" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="opEmail" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="cid" Type="Int64" />
+          <Property Name="cdate" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="tbl_operatorMapiingWithContactor">
+          <Key>
+            <PropertyRef Name="pkid" />
+          </Key>
+          <Property Name="pkid" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="contactorId" Type="Int64" />
+          <Property Name="contactorName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="operatorname" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="operatorid" Type="Int64" />
+          <Property Name="cid" Type="Int64" />
+          <Property Name="cdate" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="tbl_operatorMapping">
+          <Key>
+            <PropertyRef Name="pkid" />
+          </Key>
+          <Property Name="pkid" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="contractorFKID" Type="Int64" />
+          <Property Name="shift_fkid" Type="Int64" />
+          <Property Name="operator_fkId" Type="Int64" />
+          <Property Name="rfiDfkId" Type="Int64" />
+          <Property Name="operatorFKID" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="workingdate" Type="DateTime" Precision="0" />
+          <Property Name="cid" Type="DateTime" Precision="0" />
+          <Property Name="cdate" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="tbl_operatorshift">
+          <Key>
+            <PropertyRef Name="pkid" />
+          </Key>
+          <Property Name="pkid" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="shiftname" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="shiftstsrtTime" Type="Time" Precision="7" />
+          <Property Name="shiftEndTime" Type="Time" Precision="7" />
+          <Property Name="comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="cid" Type="Int32" />
+          <Property Name="cdate" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="tbl_RemoteConnection">
+          <Key>
+            <PropertyRef Name="pkid" />
+          </Key>
+          <Property Name="pkid" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="serverName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="dataBaseName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="userName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tbl_rfidDetails">
+          <Key>
+            <PropertyRef Name="pkid" />
+          </Key>
+          <Property Name="pkid" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RFIDNUMBER" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="cid" Type="Int64" />
+          <Property Name="cdate" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="tbl_TruckDetails">
+          <Key>
+            <PropertyRef Name="pkid" />
+          </Key>
+          <Property Name="pkid" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="truckNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="truckOwner" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Contact" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="cid" Type="Int64" />
+          <Property Name="cdate" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="tbl_truckMapping">
+          <Key>
+            <PropertyRef Name="pkid" />
+          </Key>
+          <Property Name="pkid" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="truckFKId" Type="Int64" />
+          <Property Name="truckNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="rfif_fkId" Type="Int64" />
+          <Property Name="truckRFID" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="cid" Type="Int32" />
+          <Property Name="cdate" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="tbl_weighingcontroller_demo">
+          <Key>
+            <PropertyRef Name="pkid" />
+          </Key>
+          <Property Name="pkid" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="serialNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RFID1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RFID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="shift" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TruckNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="createdDate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="createdTime" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="oprator" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="contactor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Wheal1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="wheal2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="wheal3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="wheal4" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="totalWeight" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="GrossWeight" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="netWeight" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="truckCapacity" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fill_factor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="material" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="scaleId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cid" Type="Int64" />
+          <Property Name="mid" Type="Int64" />
+          <Property Name="mdate" Type="DateTime" Precision="0" />
+          <Property Name="cdate" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityContainer Name="weighingcontrolSystemEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tbl_contractor" EntityType="Self.tbl_contractor" />
+          <EntitySet Name="tbl_operatorDetails" EntityType="Self.tbl_operatorDetails" />
+          <EntitySet Name="tbl_operatorMapiingWithContactor" EntityType="Self.tbl_operatorMapiingWithContactor" />
+          <EntitySet Name="tbl_operatorMapping" EntityType="Self.tbl_operatorMapping" />
+          <EntitySet Name="tbl_operatorshift" EntityType="Self.tbl_operatorshift" />
+          <EntitySet Name="tbl_RemoteConnection" EntityType="Self.tbl_RemoteConnection" />
+          <EntitySet Name="tbl_rfidDetails" EntityType="Self.tbl_rfidDetails" />
+          <EntitySet Name="tbl_TruckDetails" EntityType="Self.tbl_TruckDetails" />
+          <EntitySet Name="tbl_truckMapping" EntityType="Self.tbl_truckMapping" />
+          <EntitySet Name="tbl_weighingcontroller_demo" EntityType="Self.tbl_weighingcontroller_demo" />
+          <EntitySet Name="tbl_accessConnection" EntityType="weighingcontrolSystemModel.tbl_accessConnection" />
+          <EntitySet Name="tbl_storemachineData" EntityType="weighingcontrolSystemModel.tbl_storemachineData" />
+        </EntityContainer>
+        <EntityType Name="tbl_accessConnection">
+          <Key>
+            <PropertyRef Name="pkid" />
+          </Key>
+          <Property Name="pkid" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="accessconnection" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tbl_storemachineData">
+          <Key>
+            <PropertyRef Name="pkid" />
+          </Key>
+          <Property Name="pkid" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="truckRFIDIN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="truckMppigRFID" Type="Int64" />
+          <Property Name="truckRFIDOUT" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="operatorRFID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="material" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="grossWeight" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="fairWeight" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="netWeight" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="shiftTime" Type="Int64" />
+          <Property Name="status" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="ScaleId" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="machinePkid" Type="Int64" />
+          <Property Name="serverId" Type="Int64" />
+          <Property Name="cid" Type="Int64" Nullable="false" />
+          <Property Name="cdate" Type="DateTime" Precision="0" />
+          <Property Name="dateTimeMachine" Type="DateTime" Precision="3" />
+          <Property Name="outGrossWeight" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="outTairWeight" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="outNetWeight" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="outTime" Type="DateTime" Precision="3" />
+          <Property Name="outPkid" Type="Int64" />
+          <Property Name="outShift" Type="Int64" />
+          <Property Name="outLocation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="weighingcontrolSystemModelStoreContainer" CdmEntityContainer="weighingcontrolSystemEntities">
+          <EntitySetMapping Name="tbl_contractor">
+            <EntityTypeMapping TypeName="weighingcontrolSystemModel.tbl_contractor">
+              <MappingFragment StoreEntitySet="tbl_contractor">
+                <ScalarProperty Name="pkid" ColumnName="pkid" />
+                <ScalarProperty Name="contratorName" ColumnName="contratorName" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Contact" ColumnName="Contact" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="cid" ColumnName="cid" />
+                <ScalarProperty Name="cdate" ColumnName="cdate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_operatorDetails">
+            <EntityTypeMapping TypeName="weighingcontrolSystemModel.tbl_operatorDetails">
+              <MappingFragment StoreEntitySet="tbl_operatorDetails">
+                <ScalarProperty Name="pkid" ColumnName="pkid" />
+                <ScalarProperty Name="OperatorName" ColumnName="OperatorName" />
+                <ScalarProperty Name="Contact" ColumnName="Contact" />
+                <ScalarProperty Name="opEmail" ColumnName="opEmail" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="cid" ColumnName="cid" />
+                <ScalarProperty Name="cdate" ColumnName="cdate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_operatorMapiingWithContactor">
+            <EntityTypeMapping TypeName="weighingcontrolSystemModel.tbl_operatorMapiingWithContactor">
+              <MappingFragment StoreEntitySet="tbl_operatorMapiingWithContactor">
+                <ScalarProperty Name="pkid" ColumnName="pkid" />
+                <ScalarProperty Name="contactorId" ColumnName="contactorId" />
+                <ScalarProperty Name="contactorName" ColumnName="contactorName" />
+                <ScalarProperty Name="operatorname" ColumnName="operatorname" />
+                <ScalarProperty Name="operatorid" ColumnName="operatorid" />
+                <ScalarProperty Name="cid" ColumnName="cid" />
+                <ScalarProperty Name="cdate" ColumnName="cdate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_operatorMapping">
+            <EntityTypeMapping TypeName="weighingcontrolSystemModel.tbl_operatorMapping">
+              <MappingFragment StoreEntitySet="tbl_operatorMapping">
+                <ScalarProperty Name="pkid" ColumnName="pkid" />
+                <ScalarProperty Name="contractorFKID" ColumnName="contractorFKID" />
+                <ScalarProperty Name="shift_fkid" ColumnName="shift_fkid" />
+                <ScalarProperty Name="operator_fkId" ColumnName="operator_fkId" />
+                <ScalarProperty Name="rfiDfkId" ColumnName="rfiDfkId" />
+                <ScalarProperty Name="operatorFKID" ColumnName="operatorFKID" />
+                <ScalarProperty Name="workingdate" ColumnName="workingdate" />
+                <ScalarProperty Name="cid" ColumnName="cid" />
+                <ScalarProperty Name="cdate" ColumnName="cdate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_operatorshift">
+            <EntityTypeMapping TypeName="weighingcontrolSystemModel.tbl_operatorshift">
+              <MappingFragment StoreEntitySet="tbl_operatorshift">
+                <ScalarProperty Name="pkid" ColumnName="pkid" />
+                <ScalarProperty Name="shiftname" ColumnName="shiftname" />
+                <ScalarProperty Name="shiftstsrtTime" ColumnName="shiftstsrtTime" />
+                <ScalarProperty Name="shiftEndTime" ColumnName="shiftEndTime" />
+                <ScalarProperty Name="comment" ColumnName="comment" />
+                <ScalarProperty Name="cid" ColumnName="cid" />
+                <ScalarProperty Name="cdate" ColumnName="cdate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_RemoteConnection">
+            <EntityTypeMapping TypeName="weighingcontrolSystemModel.tbl_RemoteConnection">
+              <MappingFragment StoreEntitySet="tbl_RemoteConnection">
+                <ScalarProperty Name="pkid" ColumnName="pkid" />
+                <ScalarProperty Name="serverName" ColumnName="serverName" />
+                <ScalarProperty Name="dataBaseName" ColumnName="dataBaseName" />
+                <ScalarProperty Name="userName" ColumnName="userName" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="comments" ColumnName="comments" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_rfidDetails">
+            <EntityTypeMapping TypeName="weighingcontrolSystemModel.tbl_rfidDetails">
+              <MappingFragment StoreEntitySet="tbl_rfidDetails">
+                <ScalarProperty Name="pkid" ColumnName="pkid" />
+                <ScalarProperty Name="RFIDNUMBER" ColumnName="RFIDNUMBER" />
+                <ScalarProperty Name="comments" ColumnName="comments" />
+                <ScalarProperty Name="cid" ColumnName="cid" />
+                <ScalarProperty Name="cdate" ColumnName="cdate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_TruckDetails">
+            <EntityTypeMapping TypeName="weighingcontrolSystemModel.tbl_TruckDetails">
+              <MappingFragment StoreEntitySet="tbl_TruckDetails">
+                <ScalarProperty Name="pkid" ColumnName="pkid" />
+                <ScalarProperty Name="truckNo" ColumnName="truckNo" />
+                <ScalarProperty Name="truckOwner" ColumnName="truckOwner" />
+                <ScalarProperty Name="Contact" ColumnName="Contact" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="cid" ColumnName="cid" />
+                <ScalarProperty Name="cdate" ColumnName="cdate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_truckMapping">
+            <EntityTypeMapping TypeName="weighingcontrolSystemModel.tbl_truckMapping">
+              <MappingFragment StoreEntitySet="tbl_truckMapping">
+                <ScalarProperty Name="pkid" ColumnName="pkid" />
+                <ScalarProperty Name="truckFKId" ColumnName="truckFKId" />
+                <ScalarProperty Name="truckNo" ColumnName="truckNo" />
+                <ScalarProperty Name="rfif_fkId" ColumnName="rfif_fkId" />
+                <ScalarProperty Name="truckRFID" ColumnName="truckRFID" />
+                <ScalarProperty Name="comments" ColumnName="comments" />
+                <ScalarProperty Name="cid" ColumnName="cid" />
+                <ScalarProperty Name="cdate" ColumnName="cdate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_weighingcontroller_demo">
+            <EntityTypeMapping TypeName="weighingcontrolSystemModel.tbl_weighingcontroller_demo">
+              <MappingFragment StoreEntitySet="tbl_weighingcontroller_demo">
+                <ScalarProperty Name="pkid" ColumnName="pkid" />
+                <ScalarProperty Name="serialNo" ColumnName="serialNo" />
+                <ScalarProperty Name="RFID1" ColumnName="RFID1" />
+                <ScalarProperty Name="RFID" ColumnName="RFID" />
+                <ScalarProperty Name="shift" ColumnName="shift" />
+                <ScalarProperty Name="TruckNumber" ColumnName="TruckNumber" />
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+                <ScalarProperty Name="createdTime" ColumnName="createdTime" />
+                <ScalarProperty Name="oprator" ColumnName="oprator" />
+                <ScalarProperty Name="contactor" ColumnName="contactor" />
+                <ScalarProperty Name="Wheal1" ColumnName="Wheal1" />
+                <ScalarProperty Name="wheal2" ColumnName="wheal2" />
+                <ScalarProperty Name="wheal3" ColumnName="wheal3" />
+                <ScalarProperty Name="wheal4" ColumnName="wheal4" />
+                <ScalarProperty Name="totalWeight" ColumnName="totalWeight" />
+                <ScalarProperty Name="GrossWeight" ColumnName="GrossWeight" />
+                <ScalarProperty Name="netWeight" ColumnName="netWeight" />
+                <ScalarProperty Name="truckCapacity" ColumnName="truckCapacity" />
+                <ScalarProperty Name="fill_factor" ColumnName="fill_factor" />
+                <ScalarProperty Name="material" ColumnName="material" />
+                <ScalarProperty Name="scaleId" ColumnName="scaleId" />
+                <ScalarProperty Name="cid" ColumnName="cid" />
+                <ScalarProperty Name="mid" ColumnName="mid" />
+                <ScalarProperty Name="mdate" ColumnName="mdate" />
+                <ScalarProperty Name="cdate" ColumnName="cdate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_accessConnection">
+            <EntityTypeMapping TypeName="weighingcontrolSystemModel.tbl_accessConnection">
+              <MappingFragment StoreEntitySet="tbl_accessConnection">
+                <ScalarProperty Name="accessconnection" ColumnName="accessconnection" />
+                <ScalarProperty Name="pkid" ColumnName="pkid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_storemachineData">
+            <EntityTypeMapping TypeName="weighingcontrolSystemModel.tbl_storemachineData">
+              <MappingFragment StoreEntitySet="tbl_storemachineData">
+                <ScalarProperty Name="outLocation" ColumnName="outLocation" />
+                <ScalarProperty Name="outShift" ColumnName="outShift" />
+                <ScalarProperty Name="outPkid" ColumnName="outPkid" />
+                <ScalarProperty Name="outTime" ColumnName="outTime" />
+                <ScalarProperty Name="outNetWeight" ColumnName="outNetWeight" />
+                <ScalarProperty Name="outTairWeight" ColumnName="outTairWeight" />
+                <ScalarProperty Name="outGrossWeight" ColumnName="outGrossWeight" />
+                <ScalarProperty Name="dateTimeMachine" ColumnName="dateTimeMachine" />
+                <ScalarProperty Name="cdate" ColumnName="cdate" />
+                <ScalarProperty Name="cid" ColumnName="cid" />
+                <ScalarProperty Name="serverId" ColumnName="serverId" />
+                <ScalarProperty Name="machinePkid" ColumnName="machinePkid" />
+                <ScalarProperty Name="ScaleId" ColumnName="ScaleId" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="shiftTime" ColumnName="shiftTime" />
+                <ScalarProperty Name="netWeight" ColumnName="netWeight" />
+                <ScalarProperty Name="fairWeight" ColumnName="fairWeight" />
+                <ScalarProperty Name="grossWeight" ColumnName="grossWeight" />
+                <ScalarProperty Name="material" ColumnName="material" />
+                <ScalarProperty Name="operatorRFID" ColumnName="operatorRFID" />
+                <ScalarProperty Name="truckRFIDOUT" ColumnName="truckRFIDOUT" />
+                <ScalarProperty Name="truckMppigRFID" ColumnName="truckMppigRFID" />
+                <ScalarProperty Name="truckRFIDIN" ColumnName="truckRFIDIN" />
+                <ScalarProperty Name="pkid" ColumnName="pkid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

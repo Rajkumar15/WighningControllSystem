@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="3a38cd8b664a4c23aa0d1e150a0c231d" Name="Diagram1" ZoomLevel="95">
+        <EntityTypeShape EntityType="weighingcontrolSystemModel.tbl_contractor" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="weighingcontrolSystemModel.tbl_operatorDetails" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="weighingcontrolSystemModel.tbl_operatorMapiingWithContactor" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="weighingcontrolSystemModel.tbl_operatorMapping" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="weighingcontrolSystemModel.tbl_operatorshift" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="weighingcontrolSystemModel.tbl_RemoteConnection" Width="1.5" PointX="4.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="weighingcontrolSystemModel.tbl_rfidDetails" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="weighingcontrolSystemModel.tbl_TruckDetails" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="weighingcontrolSystemModel.tbl_truckMapping" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="weighingcontrolSystemModel.tbl_weighingcontroller_demo" Width="2.5" PointX="2.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="weighingcontrolSystemModel.tbl_accessConnection" Width="1.5" PointX="5.375" PointY="8.75" />
+        <EntityTypeShape EntityType="weighingcontrolSystemModel.tbl_storemachineData" Width="1.5" PointX="7.375" PointY="4.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,87 @@
+﻿@{
+    ViewBag.Title = "operatoList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="block-header">
+            <h2>Data Entry</h2>
+        </div>
+
+        <div class="row clearfix">
+            <div class="col-sm-12 col-lg-12 col-md-12 col-xs-12">
+                <div class="card">
+                    <div class="header">
+                        <h2>Operator List
+                        </h2>
+                    </div>
+                    <div class="body">
+                        <div class="row clearfix">
+                            <table class="table table-bordered table-striped table-hover js-basic-example dataTable " style="width: 100%;">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Operator Name</th>
+                                        <th>Token No</th>
+                                        <th>Email</th>
+                                        <th>Address</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script src="~/Scripts/jquery-1.12.3.min.js"></script>
+<script src="~/Content/Theams/plugins/jquery-datatable/jquery.dataTables.js"></script>
+<link href="~/Content/Theams/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet" />
+<link href="~/Content/jquery.dataTables.css" rel="stylesheet" />
+<script type="text/javascript">
+    if ('@ViewBag.alert' != '') {
+
+        alert('@ViewBag.alert');
+    }
+
+    $('.js-basic-example').DataTable({
+        "processing": true, // for show progress bar
+        "serverSide": true, // for process server side
+        "filter": true, // this is for disable filter (search box)
+        "orderMulti": false, // for disable multiple column at once
+        "ajax": {
+            "url": "/mapping/GetOperatorLsit",
+            "type": "POST",
+            "datatype": "json"
+        },
+        "columns": [
+                { "data": "pkid", "name": "pkid", "orderable": false, "autoWidth": true },
+                 { "data": "OperatorName", "name": "OperatorName", "orderable": false, "autoWidth": true },
+                  { "data": "Contact", "name": "Contact", "autoWidth": true },
+                   { "data": "opEmail", "name": "opEmail", "autoWidth": true },
+                     { "data": "Address", "name": "Address", "autoWidth": true },
+                      
+               {
+                   "data": "pkid", "orderable": false, "render": function (data, type, full, meta) {
+                       return '<a href=/mapping/operatorDtails?_id=' + data + '>Edit</a>';
+                   }
+               }
+
+        ],
+        "fnRowCallback": function (nRow, aData, iDisplayIndex) {
+            $("td:first", nRow).html(iDisplayIndex + 1);
+            return nRow;
+        }
+    })
+
+
+</script>
+<style type="text/css">
+    .dropdown-toggle {
+        display: none;
+    }
+</style>

@@ -1,0 +1,132 @@
+﻿@{
+    ViewBag.Title = "RFIDDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model weighingControlSystem.Models.DAL.tbl_rfidDetails
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="block-header">
+            <h2>Data Entry</h2>
+        </div>
+        @using (Html.BeginForm())
+        {
+            <div class="row clearfix">
+                <div class="col-sm-12 col-lg-12 col-md-12 col-xs-12">
+                    <div class="card">
+                        <div class="header">
+                            <h2>New RFID
+                            </h2>
+                        </div>
+                        <div class="body">
+                            <div class="row clearfix">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            @Html.HiddenFor(x => x.pkid)
+                                            <label>RFID Number <span style="color: red">*</span></label>
+                                           @Html.TextBoxFor(x => x.RFIDNUMBER, new { @class = "form-control", placeholder = "Enter RFID Number " })
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <label>Comments<span style="color: red"></span></label>
+                                            @Html.TextBoxFor(x => x.comments, new { @class = "form-control", placeholder = "Comments" })
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                 <div class="col-sm-4">
+
+                                    <input type="submit" value="Save" class="btn btn-primary btn-lg m-l-15 waves-effect" />
+
+
+                                </div>
+
+
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="header">
+                                <h2>RFID LIST
+                                </h2>
+                            </div>
+                            <div class="body">
+                              
+                                <div class="row clearfix">
+                                    <table class="table table-bordered table-striped table-hover js-basic-example dataTable " style="width: 100%;">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>RFID</th>
+                                                <th>Comment</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</section>
+<script src="~/Scripts/jquery-1.12.3.min.js"></script>
+<script src="~/Content/Theams/plugins/jquery-datatable/jquery.dataTables.js"></script>
+<link href="~/Content/Theams/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet" />
+<link href="~/Content/jquery.dataTables.css" rel="stylesheet" />
+<script type="text/javascript">
+    if ('@ViewBag.alert' != '') {
+
+        alert('@ViewBag.alert');
+    }
+
+    $('.js-basic-example').DataTable({
+        "processing": true, // for show progress bar
+        "serverSide": true, // for process server side
+        "filter": true, // this is for disable filter (search box)
+        "orderMulti": false, // for disable multiple column at once
+        "ajax": {
+            "url": "/mapping/rfidList",
+            "type": "POST",
+            "datatype": "json"
+        },
+        "columns": [
+                { "data": "pkid", "name": "pkid", "orderable": false, "autoWidth": true },
+                 { "data": "RFIDNUMBER", "name": "RFIDNUMBER", "orderable": false, "autoWidth": true },
+                  { "data": "comments", "name": "comments", "orderable": false, "autoWidth": true },
+                  
+               {
+             "data": "pkid", "orderable": false, "render": function (data, type, full, meta) {
+                 return '<a href=/mapping/RFIDDetails?_id=' + data + '>Edit</a>';
+             }
+         }
+
+        ],
+        "fnRowCallback": function (nRow, aData, iDisplayIndex) {
+            $("td:first", nRow).html(iDisplayIndex + 1);
+            return nRow;
+        }
+    })
+
+
+</script>
+<style type="text/css">
+    .dropdown-toggle {
+        display: none;
+    }
+</style>
+

@@ -1,0 +1,97 @@
+﻿@model  weighingControlSystem.Models.LoginModel
+@{
+    
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+   <link href="~/Content/Theams/plugins/bootstrap/css/bootstrap.css" rel="stylesheet" />
+</head>
+
+<body>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class=" login">
+             @Html.ValidationSummary(true)
+            <h2>Log In</h2>
+            <fieldset>
+                <div class="row">
+                    <div class="col-sm-12">
+                        @Html.TextBoxFor(x => x.UserName, new { @class = "form-control ",@placeholder="User ID" })
+                    </div>
+                </div>
+                <div class="row" style="margin-top:10px;">
+                    <div class="col-sm-12">
+                        @Html.PasswordFor(x => x.Password, new { @class = "form-control topmargin",@placeholder="Password" })
+                    </div>
+                </div>
+         @*  @Html.ActionLink("click","ProductName","Product",new{productName="Rajeev"},"")*@
+                </fieldset>
+             <input type="submit" value="Log In" />
+            <div class="row">
+                    <div class="col-sm-12">
+                      @Html.CheckBoxFor(x=>x.RememberMe)Remember Me ?
+                    </div>
+                </div>
+            <div class="utilities">
+   
+  </div>
+        </div>
+
+    }
+</body>
+
+</html>
+
+<style type="text/css">
+    .login input[type="submit"] {
+    margin-top: 20px;
+    display: block;
+    padding: 13px 0;
+    width: 335px;
+    font-size: 13px;
+    font-weight: bold;
+    border: 0;
+    text-shadow: 0px 1px 0px rbga(255, 255, 255, 1);
+    background-color: #ffcd4e;
+    background-image: -webkit-linear-gradient(90deg,#5E5654 , #5E5654);
+    border-radius: 5px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+}
+    body {
+    font-family: 'Myriad Pro', 'Trebuchet MS', sans-serif;
+    background-image: url("/Images/inside-Background.jpg");
+    background-repeat: no-repeat;
+        }
+    a {
+        font-size:12px;
+        margin-top:5px;
+    }
+
+    .login {
+    width: 375px;
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 20px;
+    background-image: -webkit-linear-gradient(90deg, #fff, #fff);
+    position: absolute;
+    left: 50%;
+    top: 100px;
+    margin-left: -170px;
+    box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.2) inset, 0px 0px 2px rgba(0, 0, 0, 0.5);
+}
+</style>
+<script type="text/javascript">
+    $('.validation-summary-errors ul li').css({
+        'list-style': 'None',
+        'color': 'Red',
+        'text-align': 'center',
+        'font-size':'15px'
+    })
+</script>

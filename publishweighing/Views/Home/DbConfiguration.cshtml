@@ -1,0 +1,113 @@
+﻿@model weighingControlSystem.Models.DAL.tbl_RemoteConnection
+@{
+    ViewBag.Title = "DbConfiguration";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<section class="content">
+    <div class="container-fluid">
+        <div class="block-header">
+            <h2>Remote Database Connection</h2>
+        </div>
+        @using(Html.BeginForm())
+        {
+        <div class="row clearfix">
+            <div class="col-sm-12 col-lg-12 col-md-12 col-xs-12">
+                <div class="card">
+                    <div class="header">
+                        <h2>New Connection
+                        </h2>
+                    </div>
+                    <div class="body">
+                        <div class="row clearfix">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        @Html.HiddenFor(x => x.pkid)
+                                        <label>Server Name <span style="color: red">*</span></label>
+                                        @Html.TextBoxFor(x => x.serverName, new { @class = "form-control", placeholder = "Server Name ", @required = "required" })
+
+                                    </div>
+                                    <span style="color: red; font-size: 11px;">Computer Name or IP Address, Eg: example-PC or 192.168.00</span>
+                                </div>
+
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <label>Database Name <span style="color: red">*</span></label>
+                                        @Html.TextBoxFor(x => x.dataBaseName, new { @class = "form-control", placeholder = "Database Name", @required = "required" })
+                                    </div>
+                                    <span style="color: red; font-size: 11px;">Eg:Mydatabase</span>
+                                </div>
+
+                            </div>
+                            
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <label>Database User Name <span style="color: red">*</span></label>
+                                        @Html.TextBoxFor(x => x.userName, new { @class = "form-control", placeholder = "Database User Name", @required = "required" })
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <label>Database Password <span style="color: red">*</span></label>
+                                        @Html.PasswordFor(x => x.password, new { @class = "form-control", placeholder = "Database Password", @required = "required" })
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <label>Comments</label>
+                                        @Html.TextAreaFor(x => x.comments, new { @class = "form-control", placeholder = "Comments" })
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="col-sm-12">
+                                 <input type="submit" value="Save" class="btn-primary " />
+                                <button type="button" id="uxDbConnection" class="btn-primary ">Test Connection</button>
+                                <input type="reset" value="Reset" class="btn-primary " />
+
+                            </div>
+                               
+
+                           
+
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        }
+    </div>
+</section>
+
+<script src="~/Scripts/jquery-1.12.3.min.js"></script>
+<script type="text/javascript">
+    if ('@ViewBag.alert'!='')
+    {
+        alert('@ViewBag.alert');
+    }
+
+
+    $("#uxDbConnection").click(function () {
+        $.post('/Home/testDbConnection?serverName=' + $("#serverName").val() + '&dataBaseName=' + $('#dataBaseName').val() + '&userName=' + $('#userName').val() + '&password=' + $('#password').val() + '', function (data) {
+            alert(data);
+        })
+       
+    })
+
+</script>

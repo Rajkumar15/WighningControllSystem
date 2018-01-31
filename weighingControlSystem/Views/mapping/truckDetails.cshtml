@@ -1,0 +1,105 @@
+﻿@model weighingControlSystem.Models.DAL.tbl_TruckDetails
+@{
+    ViewBag.Title = "truckDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="block-header">
+            <h2>Data Entry</h2>
+        </div>
+        @using (Html.BeginForm())
+        {
+            <div class="row clearfix">
+                <div class="col-sm-12 col-lg-12 col-md-12 col-xs-12">
+                    <div class="card">
+                        <div class="header">
+                            <h2>New Truck
+                            </h2>
+                        </div>
+                        <div class="body">
+                            <div class="row clearfix">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            @Html.HiddenFor(x => x.pkid)
+                                            <label>Truck Number<span style="color: red">*</span></label>
+                                            @Html.TextBoxFor(x => x.truckNo, new { @class = "form-control", placeholder = "Enter Truck Number", @required = "required" })
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <div class="form-line">
+
+                                            <label>Owner Name<span style="color: red"></span></label>
+                                            @Html.TextBoxFor(x => x.truckOwner, new { @class = "form-control", placeholder = "Enter Owner Name" })
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <label>Capacity (In Tones)<span style="color: red"></span></label>
+                                            @Html.TextBoxFor(x => x.Contact, new { @class = "form-control", placeholder = "Enter Contact Number" })
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <label>Email<span style="color: red"></span></label>
+                                            @Html.TextBoxFor(x => x.email, new { @class = "form-control", placeholder = "Enter Email", @type = "email" })
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <label>Address<span style="color: red"></span></label>
+                                            @Html.TextAreaFor(x => x.address, new { @class = "form-control", placeholder = "Enter Address" })
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="col-sm-12">
+                                      <input type="submit" value="Save" class="btn btn-primary btn-lg m-l-15 waves-effect" />
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+        }
+    </div>
+</section>
+<script src="~/Scripts/jquery-1.12.3.min.js"></script>
+
+<script type="text/javascript">
+    if ('@ViewBag.alert' != '') {
+
+        alert('@ViewBag.alert');
+    }
+
+</script>

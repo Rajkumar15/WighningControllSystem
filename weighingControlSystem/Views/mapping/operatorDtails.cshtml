@@ -1,0 +1,86 @@
+﻿@{
+    ViewBag.Title = "operatorDtails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model weighingControlSystem.Models.DAL.tbl_operatorDetails
+<section class="content">
+    <div class="container-fluid">
+        <div class="block-header">
+            <h2>Data Entry</h2>
+        </div>
+
+        <div class="row clearfix">
+            <div class="col-sm-12 col-lg-12 col-md-12 col-xs-12">
+                <div class="card">
+                    <div class="header">
+                        <h2>New Operator
+                        </h2>
+                    </div>
+                    @using (Html.BeginForm())
+                    {
+                        <div class="body">
+                            <div class="row clearfix">
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            @Html.HiddenFor(x => x.pkid)
+                                            <label>Operator Name<span style="color: red">*</span></label>
+                                            @Html.TextBoxFor(x => x.OperatorName, new { @class = "form-control", placeholder = "Enter Operator Name ", @required = "required" })
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <label>Token Number<span style="color: red"></span></label>
+                                            @Html.TextBoxFor(x => x.Contact, new { @class = "form-control", placeholder = "Token Number " })
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <label>Email<span style="color: red"></span></label>
+                                            @Html.TextBoxFor(x => x.opEmail, new { @class = "form-control", placeholder = "Enter Email", @type = "email" })
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <label>Address</label>
+                                            @Html.TextAreaFor(x => x.Address, new { @class = "form-control", placeholder = "Enter Address" })
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="col-sm-12">
+                                      <input type="submit" value="Save" class="btn btn-primary btn-lg m-l-15 waves-effect" />
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script src="~/Scripts/jquery-1.12.3.min.js"></script>
+
+<script type="text/javascript">
+    if ('@ViewBag.alert' != '') {
+
+        alert('@ViewBag.alert');
+    }
+
+</script>

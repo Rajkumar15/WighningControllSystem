@@ -1,0 +1,165 @@
+﻿@{
+    ViewBag.Title = "poolMacineData";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model weighingControlSystem.Models.DAL.tbl_truckMapping
+@{
+    ViewBag.Title = "truckMapping";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<section class="content">
+    <div class="container-fluid">
+        <div class="block-header">
+            <h2>Import Machine Data</h2>
+        </div>
+        @using (Html.BeginForm())
+        {
+            <div class="row clearfix">
+                <div class="col-sm-12 col-lg-12 col-md-12 col-xs-12">
+                    <div class="card">
+                        <div class="header">
+                            <h2>Import Data
+                            </h2>
+                            <b style="color:red">Last Update at :@ViewBag.refresh </b> <a href="#" onclick="refreshPage()">Click Here For Refesh</a>
+                        </div>
+                        <div class="body">
+                            <div class="row clearfix">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            @Html.HiddenFor(x => x.pkid)
+                                            <label>Truck No <span style="color: red">*</span></label><br />
+                                            @Html.DropDownList("serverName", (SelectList)@ViewBag.server, "*******Select Server*********", new { @required = "required", @class = "dropdown" })
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <label>Date <span style="color: red"></span></label>
+                                            <br />
+                                            @Html.TextBox("fromDate", "", new { @class = "form-control datepicker", placeholder = "Date" })
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="col-sm-4">
+
+                                     <input type="submit" value="Import Data" class="btn btn-primary btn-lg m-l-15 waves-effect" />
+                                </div>
+                               
+                              
+
+                            </div>
+
+                           
+                        </div>
+                        <div class="card">
+                            <div class="header">
+                                <h2>Import List
+                                </h2>
+                            </div>
+                            <div class="body">
+
+                                <div class="row clearfix">
+                                    <table class="table table-bordered table-striped table-hover js-basic-example dataTable " style="width: 100%;">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Scale Id</th>
+                                                <th>Truck No</th>
+                                                <th>Tare Weight</th>
+                                                <th>Gross Weight</th>
+                                                <th>Net Weight</th>
+                                                <th>Date & Time</th>
+                                                <th>Status</th>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</section>
+<script src="~/Scripts/jquery-1.12.3.min.js"></script>
+<script src="~/Content/Theams/plugins/jquery-datatable/jquery.dataTables.js"></script>
+<link href="~/Content/Theams/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet" />
+<link href="~/Content/jquery.dataTables.css" rel="stylesheet" />
+<script src="~/Content/Theams/js/pages/forms/basic-form-elements.js"></script>
+<script type="text/javascript">
+    if ('@ViewBag.alert' != '') {
+
+        alert('@ViewBag.alert');
+    }
+
+    var date = new Date();
+
+    setTimeout(function () {
+        setInterval(refreshPage, 60000);
+        refreshPage();
+    }, (60 - date.getSeconds()) * 1000);
+
+    function refreshPage()
+    {
+        location.reload();
+
+    }
+
+
+ var dataTableLastpageObject =   $('.js-basic-example').DataTable({
+        "processing": true, // for show progress bar
+        "serverSide": true, // for process server side
+        "filter": false, // this is for disable filter (search box)
+        "orderMulti": false, // for disable multiple column at once     
+        "ajax": {
+            "url": "/poolMachineData/getmachineDataList",
+            "type": "POST",
+            "datatype": "json"
+        },
+        "columns": [
+                { "data": "pkid", "name": "pkid", "orderable": false, "autoWidth": true },
+                { "data": "ScaleId", "name": "ScaleId", "autoWidth": true },
+                { "data": "truckNo", "name": "truckNo", "autoWidth": true },
+                { "data": "tareWeight", "name": "fairWeight", "autoWidth": true },
+                  { "data": "grossWeight", "name": "grossWeight", "autoWidth": true },
+                  { "data": "netweight", "name": "netweight", "autoWidth": true },
+                    { "data": "dateTimeMachine", "name": "dateTimeMachine", "autoWidth": true,"render":function (value) {
+                        if (value === null) return "";
+                        var pattern = /Date\(([^)]+)\)/;
+                        var results = pattern.exec(value);
+                        var dt = new Date(parseFloat(results[1]));
+                        return (dt.getMonth() + 1) + "/" + dt.getDate() + "/" + dt.getFullYear()+" "+dt.toLocaleTimeString();}
+                     },
+                { "data": "status", "name": "status", "autoWidth": true }
+           
+
+
+        ],
+        "fnRowCallback": function (nRow, aData, iDisplayIndex) {
+            $("td:first", nRow).html(iDisplayIndex + 1);
+            return nRow;
+        }
+    })
+
+
+ dataTableLastpageObject.page('last')
+
+</script>
+<style type="text/css">
+    .dropdown-toggle {
+        display: none;
+    }
+</style>
+

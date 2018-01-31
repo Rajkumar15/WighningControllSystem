@@ -1,0 +1,173 @@
+﻿@{
+    ViewBag.Title = "operatormapping";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model weighingControlSystem.Models.DAL.tbl_operatorMapping
+
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="block-header">
+            <h2>Mapping</h2>
+        </div>
+        @using (Html.BeginForm())
+        {
+            <div class="row clearfix">
+                <div class="col-sm-12 col-lg-12 col-md-12 col-xs-12">
+                    <div class="card">
+                        <div class="header">
+                            <h2>Operator With RFID
+                            </h2>
+                        </div>
+                        <div class="body">
+                            <div class="row clearfix">
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            @Html.HiddenFor(x => x.pkid)
+                                            <label>Operator<span style="color: red">*</span></label>
+                                            @Html.DropDownListFor(x => x.operator_fkId, (SelectList)@ViewBag.operatorList, "------select Operator----", new { @class = "form-control", @required = "required", @tabindex="0" })
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <label>Shift<span style="color: red">*</span></label>
+                                            @Html.DropDownListFor(x => x.shift_fkid, (SelectList)@ViewBag.shift, new { @class = "form-control", @required = "required", @tabindex="2" })
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                    <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <label>Truck No<span style="color: red">*</span></label>
+                                            @Html.DropDownListFor(x => x.rfiDfkId, (SelectList)@ViewBag.truck, new { @class = "form-control", @required = "required", @tabindex="3" })
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <label>Date</label>
+                                            @Html.TextBoxFor(x => x.workingdate, new { @class = "form-control datepicker", placeholder = "Date " })
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                               <br />
+                                <div class="col-sm-3">
+
+                                    <input type="submit" value="Save" class="btn btn-primary btn-lg m-l-15 waves-effect" />
+
+
+                                </div>
+
+
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="header">
+                                <h2>Operator List
+                                </h2>
+                            </div>
+                            <div class="body">
+                                <div class="row clearfix">
+                                    <table class="table table-bordered table-striped table-hover js-basic-example dataTable " style="width: 100%;">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Operator</th>
+                                                <th>Truck No</th>
+                                                <th>Shift</th>
+                                                <th>Date</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</section>
+<script src="~/Scripts/jquery-1.12.3.min.js"></script>
+<script src="~/Content/Theams/plugins/jquery-datatable/jquery.dataTables.js"></script>
+<link href="~/Content/Theams/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet" />
+<link href="~/Content/jquery.dataTables.css" rel="stylesheet" />
+<script src="~/Content/Theams/js/pages/forms/basic-form-elements.js"></script>
+<script type="text/javascript">
+
+    $("#shift_fkid").val('@ViewBag.shifId')
+    var weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+    var month=["January","February","March","April","May","June","July","August","September","October","Novenber","December"]
+    today();
+    if ('@ViewBag.alert' != '') {
+
+        alert('@ViewBag.alert');
+    }
+   
+    function today() {
+        var d = new Date();
+        debugger;
+        var curr_date = d.getDate();
+        var curr_month = d.getMonth() + 1;
+        var curr_year = d.getFullYear();
+        $("#workingdate").val(weekday[parseInt(d.getDay())] + " " + curr_date + " " + month[curr_month-1] + " " + curr_year);
+    }
+    $('.js-basic-example').DataTable({
+        "processing": true, // for show progress bar
+        "serverSide": true, // for process server side
+        "filter": true, // this is for disable filter (search box)
+        "orderMulti": false, // for disable multiple column at once
+        "ajax": {
+            "url": "/mapping/operatorshiftList",
+            "type": "POST",
+            "datatype": "json"
+        },
+        "columns": [
+                { "data": "pkid", "name": "pkid", "orderable": false, "autoWidth": true },
+                { "data": "operatorName", "name": "operatorName", "orderable": false, "autoWidth": true },
+                { "data": "truckNo", "name": "truckNo", "orderable": false, "autoWidth": true },
+                  { "data": "shiftName", "name": "shiftName", "orderable": false, "autoWidth": true },
+                   { "data": "date", "name": "operatorRFID", "date": false, "autoWidth": true },
+               {
+                   "data": "pkid", "orderable": false, "render": function (data, type, full, meta) {
+                       return '<a href=/mapping/operatormapping?_id=' + data + '>Edit</a>';
+                   }
+               }
+
+        ],
+        "fnRowCallback": function (nRow, aData, iDisplayIndex) {
+            $("td:first", nRow).html(iDisplayIndex + 1);
+            return nRow;
+        }
+    })
+
+
+</script>
+<style type="text/css">
+    .dropdown-toggle {
+        display: none;
+    }
+</style>
+

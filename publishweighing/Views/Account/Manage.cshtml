@@ -1,0 +1,56 @@
+﻿@{
+    ViewBag.Title = "Manage";
+                                            //Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="block-header">
+            <h2>User</h2>
+        </div>
+        <div class="row clearfix">
+            <div class="col-sm-12 col-lg-12 col-md-12 col-xs-12">
+                <div class="card">
+                    <div class="header">
+                        <h2>Change Password
+                        </h2>
+                    </div>
+                    <div class="body">
+                        <div class="row clearfix">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <p>You're logged in as <strong>@User.Identity.Name</strong>.</p>
+
+                                        @if (ViewBag.HasLocalPassword)
+                                        {@ViewBag.StatusMessage 
+                                           
+                                            @Html.Partial("_ChangePasswordPartial")
+                                        }
+                                        else
+                                        { 
+                                            @Html.Partial("_SetPasswordPartial")
+                                        }
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                            <section id="externalLogins">
+                                @* @Html.Action("RemoveExternalLogins")*@
+
+                                @*    <h3>Add an external login</h3>*@
+                                @*  @Html.Action("ExternalLoginsList", new { ReturnUrl = ViewBag.ReturnUrl })*@
+                            </section>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
