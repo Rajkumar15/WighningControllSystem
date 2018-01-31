@@ -3863,6 +3863,7 @@
       <DependentUpon>weighingControl.edmx</DependentUpon>
       <LastGenOutput>weighingControl.cs</LastGenOutput>
     </Content>
+    <Content Include="DatabaseScript.bak" />
     <None Include="Properties\PublishProfiles\weighing.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.12.3.min.js" />
